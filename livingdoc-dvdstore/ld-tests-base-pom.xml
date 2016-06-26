@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>info.novatec.aqe.showcase</groupId>
+	<artifactId>livingdoc-freeze</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<livingdoc.spec.dir>${project.build.directory}/livingdoc-spec</livingdoc.spec.dir>
+		<!-- The remote Repository UID. Must correspond to the 'LivingDoc UID' of Confluence (found in Space Registration of the Space Admin). -->
+		<livingdoc.repository.uid>Confluence-LD</livingdoc.repository.uid>
+		
+		<!-- Document Repository base URL -->
+		<livingdoc.document.repository.base.url><![CDATA[http://localhost:8090/confluence/rpc/xmlrpc?handler=livingdoc1&sut=CI_VM&includeStyle=true&implemented=true#LD]]></livingdoc.document.repository.base.url>
+		
+	
+	</properties>
+	<build>
+		<plugins>
+			<!-- Download LivingDoc Specification -->
+			<plugin>
+				<groupId>info.novatec.testit</groupId>
+				<artifactId>livingdoc-maven</artifactId>
+				<version>1.0.0</version>
+				<configuration>
+					<fixtureSourceDirectory>src/test/java</fixtureSourceDirectory>
+        			<fixtureOutputDirectory>target/test-classes</fixtureOutputDirectory>
+        			<specsDirectory>target/livingdoc-specs</specsDirectory>
+					<reportsDirectory>target/livingdoc-reports</reportsDirectory>
+					<reportsType>xml</reportsType>
+                    <systemUnderDevelopment>info.novatec.aqe.showcase.livingdoc.showcase.sbe.livingdoc.ExtendedSystemUnderDevelopment</systemUnderDevelopment>
+                    <resources>
+                        <resource>
+                            <directory>src/test/resources</directory>
+                        </resource>
+                    </resources>
+					<repositories>
+						<repository>
+							<name>living_doc</name>
+							<type>info.novatec.testit.livingdoc.repository.LivingDocRepository</type>
+							<root>
+								<![CDATA[${livingdoc.document.repository.base.url}]]>
+							</root>
+							<suites>
+								<suite>${livingdoc.repository.uid}</suite>
+							</suites>
+						</repository>
+					</repositories>
+					 <goalPrefix>livingdoc</goalPrefix>
+				</configuration>
+				
+			</plugin>
+		</plugins>
+	</build>
+</project>
