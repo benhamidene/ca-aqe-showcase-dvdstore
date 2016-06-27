@@ -1,0 +1,64 @@
+group 'info.novatec.testit'
+version '1.0-SNAPSHOT'
+sourceCompatibility 1.8
+
+apply plugin: 'java'
+
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath "info.novatec.testit:livingdoc-core:1.1.2@jar"
+        classpath "info.novatec.testit:livingdoc-client:1.1.2@jar"
+        classpath "info.novatec.testit:livingdoc-server:1.1.2@jar"
+        classpath "xmlrpc:xmlrpc:2.0.1"
+        classpath "org.apache.commons:commons-lang3:3.4"
+        classpath "commons-codec:commons-codec:1.9"
+        classpath "commons-io:commons-io:2.4"
+        classpath "org.apache.logging.log4j:log4j-slf4j-impl:2.5"
+        classpath files('D:/work/external-repos/testit-livingdoc/livingdoc-gradle/build/libs/livingdoc-gradle-1.0-SNAPSHOT.jar')
+    }
+}
+apply plugin: 'livingdoc'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    livingdocCompile('info.novatec.testit:livingdoc-cli:1.1.2') { exclude group: 'javax.transaction', module: 'jta' }
+    livingdocCompile('info.novatec.testit:livingdoc-core:1.1.2') { exclude group: 'javax.transaction', module: 'jta' }
+    livingdocCompile('info.novatec.testit:livingdoc-server:1.1.2') { exclude group: 'javax.transaction', module: 'jta' }
+
+    livingdocCompile "info.novatec.testit:webtester-support-junit:1.1.1"
+    livingdocCompile "info.novatec.testit:webtester-support-firefox:1.1.1"
+    livingdocCompile "org.seleniumhq.selenium:selenium-firefox-driver:2.48.2"
+    livingdocCompile "org.apache.httpcomponents:httpclient:4.3.5"
+    livingdocCompile "xmlrpc:xmlrpc:2.0.1"
+    livingdocCompile "org.apache.commons:commons-lang3:3.4"
+    livingdocCompile "commons-collections:commons-collections:3.2.1"
+    livingdocCompile "org.apache.logging.log4j:log4j-slf4j-impl:2.5"
+
+    livingdocCompile "commons-codec:commons-codec:1.9"
+    livingdocCompile "commons-io:commons-io:2.4"
+    livingdocCompile "org.hamcrest:hamcrest-all:1.3"
+    livingdocCompile group: 'junit', name: 'junit', version: '4.12'
+
+}
+
+livingdoc {
+    sourceDirectory = file('src/fixtures/java')
+    resourcesDirectory = file('src/fixtures/resources')
+    //specsDirectory = file('build/livingdoc/specs')
+    respositoryImplementation = "info.novatec.testit.livingdoc.repository.LivingDocRepository"
+    sudImplementation = "info.novatec.aqe.showcase.livingdoc.showcase.sbe.livingdoc.ExtendedSystemUnderDevelopment"
+    repositoryURL = "http://localhost:8090/confluence/rpc/xmlrpc?handler=livingdoc1&sut=CI_VM&includeStyle=true&implemented=true#LD"
+    repositoryUID = "Confluence-LD"
+    reportsType = "xml"
+    sud = "CI_VM"
+    debug = true
+}
