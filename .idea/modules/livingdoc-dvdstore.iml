@@ -5,13 +5,13 @@
     <output-test url="file://$MODULE_DIR$/../../livingdoc-dvdstore/build/classes/test" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../livingdoc-dvdstore">
-      <sourceFolder url="file://$MODULE_DIR$/../../livingdoc-dvdstore/src/fixtures/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../livingdoc-dvdstore/src/ui-fixtures/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../livingdoc-dvdstore/src/livingdoc/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../livingdoc-dvdstore/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../../livingdoc-dvdstore/src/fixtures/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../livingdoc-dvdstore/src/ui-fixtures/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/../../livingdoc-dvdstore/src/livingdoc/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/../../livingdoc-dvdstore/src/main/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/../../livingdoc-dvdstore/src/fixtures/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../livingdoc-dvdstore/src/ui-fixtures/resources" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/../../livingdoc-dvdstore/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../livingdoc-dvdstore/build" />
     </content>

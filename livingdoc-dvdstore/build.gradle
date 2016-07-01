@@ -1,9 +1,9 @@
 group 'info.novatec.testit'
 version '1.0-SNAPSHOT'
-sourceCompatibility 1.8
 
 apply plugin: 'java'
 
+sourceCompatibility = 1.8
 
 buildscript {
     repositories {
@@ -50,9 +50,8 @@ dependencies {
 
 }
 
-livingdoc {
-    sourceDirectory = file('src/fixtures/java')
-    resourcesDirectory = file('src/fixtures/resources')
+livingdocUiTest {
+    sourceDirectory = file('src/ui-fixtures')
     //specsDirectory = file('build/livingdoc/specs')
     respositoryImplementation = "info.novatec.testit.livingdoc.repository.LivingDocRepository"
     sudImplementation = "info.novatec.aqe.showcase.livingdoc.showcase.sbe.livingdoc.ExtendedSystemUnderDevelopment"
