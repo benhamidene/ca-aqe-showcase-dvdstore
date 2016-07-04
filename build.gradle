@@ -1,0 +1,77 @@
+group 'info.novatec.testit'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+
+buildscript {
+    repositories {
+        jcenter()
+        mavenLocal()
+    }
+
+    dependencies {
+        classpath "info.novatec.testit:livingdoc-gradle:+" // get the plugin into the classpath
+    }
+}
+apply plugin: 'livingdoc'
+
+repositories {
+    mavenCentral()
+}
+
+livingdoc {
+    // pro Konfiguration wird ein livingdoc${configName} Task estellt, um die Specs auszuführen
+    uiTest { // ist frei wählbar, sollte jedoch möglichst aussagekräftig sein
+        fixtureSourceDirectory = file('src/ui-fixtures/java')
+        resources {
+            uiTestResources { // ist frei wählbar, sollte jedoch möglichst aussagekräftig sein
+                directory = file('src/ui-fixtures/resources')
+            }
+        }
+        specsDirectory = file('build/livingdoc/specs')
+
+        systemUnderDevelopment = "info.novatec.aqe.showcase.livingdoc.showcase.sbe.livingdoc.ExtendedSystemUnderDevelopment"
+
+//reportsType = "xml" // optional
+
+//debug = true // optional
+        repositories {
+            // pro Repository wird immer ein freezeSpecifications Task erstellt, falls es mehrere Repositories geben sollte,
+            // wird auch ein freezeAllSpecs Task erstellt
+            dvdstore { // ist frei wählbar, sollte jedoch möglichst aussagekräftig sein
+                respositoryImplementation = "info.novatec.testit.livingdoc.repository.LivingDocRepository"
+
+                repositoryURL = "http://localhost:8090/confluence/rpc/xmlrpc?handler=livingdoc1&sut=CI_VM&includeStyle=true&implemented=true#LD"
+
+                repositoryUID = "Confluence-LD"
+            }
+        }
+        sud = "CI_VM"
+    }
+}
+
+dependencies {
+
+    livingdocUiTestCompile "info.novatec.testit:webtester-support-junit:1.1.1"
+    livingdocUiTestCompile "info.novatec.testit:webtester-support-firefox:1.1.1"
+    livingdocUiTestCompile "org.seleniumhq.selenium:selenium-firefox-driver:2.48.2"
+    livingdocUiTestCompile "org.apache.httpcomponents:httpclient:4.3.5"
+    livingdocUiTestCompile "xmlrpc:xmlrpc:2.0.1"
+    livingdocUiTestCompile "org.apache.commons:commons-lang3:3.4"
+    livingdocUiTestCompile "commons-collections:commons-collections:3.2.1"
+    livingdocUiTestCompile "org.apache.logging.log4j:log4j-slf4j-impl:2.5"
+
+    livingdocUiTestCompile('info.novatec.testit:livingdoc-cli:1.1.2') { exclude group: 'javax.transaction', module: 'jta' }
+    livingdocUiTestCompile('info.novatec.testit:livingdoc-core:1.1.2') { exclude group: 'javax.transaction', module: 'jta' }
+    livingdocUiTestCompile('info.novatec.testit:livingdoc-server:1.1.2') { exclude group: 'javax.transaction', module: 'jta' }
+
+    livingdocUiTestCompile "commons-codec:commons-codec:1.9"
+    livingdocUiTestCompile "commons-io:commons-io:2.4"
+    livingdocUiTestCompile "org.hamcrest:hamcrest-all:1.3"
+    livingdocUiTestCompile group: 'junit', name: 'junit', version: '4.12'
+
+}
+
