@@ -44,7 +44,7 @@ livingdoc {
             dvdstore { // ist frei wählbar, sollte jedoch möglichst aussagekräftig sein
                 respositoryImplementation = "info.novatec.testit.livingdoc.repository.LivingDocRepository"
 
-                repositoryURL = "http://localhost:8090/confluence/rpc/xmlrpc?handler=livingdoc1&sut=CI_VM&includeStyle=true&implemented=true#LD"
+                repositoryURL = "http://localhost:2020/confluence/rpc/xmlrpc?handler=livingdoc1&sut=CI_VM&includeStyle=true&implemented=true#LD"
 
                 repositoryUID = "Confluence-LD"
             }
