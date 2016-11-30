@@ -13,7 +13,7 @@
 		<livingdoc.repository.uid>Confluence-LD</livingdoc.repository.uid>
 		
 		<!-- Document Repository base URL -->
-		<livingdoc.document.repository.base.url><![CDATA[http://localhost:8090/confluence/rpc/xmlrpc?handler=livingdoc1&sut=CI_VM&includeStyle=true&implemented=true#LD]]></livingdoc.document.repository.base.url>
+		<livingdoc.document.repository.base.url><![CDATA[http://localhost:2020/confluence/rpc/xmlrpc?handler=livingdoc1&sut=CI_VM&includeStyle=true&implemented=true#LD]]></livingdoc.document.repository.base.url>
 		
 	
 	</properties>
