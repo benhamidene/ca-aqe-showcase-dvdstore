@@ -1,11 +1,4 @@
 node {
-    stage('prepare') {
-     //withEnv(['WORKSPACE=/var/jenkins/dvdstore_livingdoc_ci/${BUILD_ID}']) {
-         //env.WORKSPACE=/var/jenkins/dvdstore_livingdoc_ci/${BUILD_ID}
-       
-        sh '''cp -a /home/novatec/work/src/ca-aqe-showcases/livingdoc-dvdstore/. ${WORKSPACE}'''
-     //}
-    }
     
     stage('build') {
         sh '''mvn clean install'''
