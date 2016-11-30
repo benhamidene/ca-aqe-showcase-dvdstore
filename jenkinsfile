@@ -1,0 +1,26 @@
+node {
+    stage('prepare') {
+     //withEnv(['WORKSPACE=/var/jenkins/dvdstore_livingdoc_ci/${BUILD_ID}']) {
+         //env.WORKSPACE=/var/jenkins/dvdstore_livingdoc_ci/${BUILD_ID}
+       
+        sh '''cp -a /home/novatec/work/src/ca-aqe-showcases/livingdoc-dvdstore/. ${WORKSPACE}'''
+     //}
+    }
+    
+    stage('build') {
+        sh '''mvn clean install'''
+    }
+    
+    stage('test'){
+        sh ''' mvn -X livingdoc:freeze -Dlivingdoc.document.repository.base.url="http://localhost:2020/confluence/rpc/xmlrpc?handler=livingdoc1&amp;sut=CI_DEV&amp;includeStyle=true&amp;implemented=true#LD" '''
+        try{
+            sh ''' mvn -X livingdoc:run '''
+        }catch(e){
+            
+        }
+    }
+    
+    stage('report'){
+        livingdoc confluenceConfig: [confluenceSiteTitle: 'Confluence', confluenceSpaceKey: 'LD', confluenceUrl: 'http://localhost:2090/confluence', filenamePrefix: 'apitest', sut: 'DEV'], failureThreshold: 100, testResultsPattern: '**/livingdoc-reports/**'
+    }
+}

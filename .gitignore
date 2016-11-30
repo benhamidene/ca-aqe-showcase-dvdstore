@@ -20,4 +20,4 @@ libs
 *.ipr
 build
 .gradle
-.idea/*
+.idea/**
