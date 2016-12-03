@@ -3,11 +3,12 @@ package info.novatec.testit.showcase.common;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
 import info.novatec.testit.webtester.browser.Browser;
-import info.novatec.testit.webtester.browser.proxy.FirefoxFactory;
-
+import info.novatec.testit.webtester.browser.factories.FirefoxFactory;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 
 /**
@@ -44,10 +45,8 @@ public abstract class BaseUITestFixture {
 	}
 	
 	private Browser createBrowser(){
-		
-		FirefoxProfile ffProfile = new FirefoxProfile();
-		ffProfile.setPreference("browser.private.browsing.autostart",true);
-		return new FirefoxFactory().createBrowser(ffProfile);
+		FirefoxDriver driver = new FirefoxDriver();
+		return new FirefoxFactory().createBrowser(driver);
 		
 	}
 }
