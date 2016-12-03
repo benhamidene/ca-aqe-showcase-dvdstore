@@ -25,15 +25,15 @@ repositories {
 livingdoc {
     // pro Konfiguration wird ein livingdoc${configName} Task estellt, um die Specs auszuführen
     uiTest { // ist frei wählbar, sollte jedoch möglichst aussagekräftig sein
-        fixtureSourceDirectory = file('src/ui-fixtures/java')
+        fixtureSourceDirectory = file('src/test/java')
         resources {
             uiTestResources { // ist frei wählbar, sollte jedoch möglichst aussagekräftig sein
-                directory = file('src/ui-fixtures/resources')
+                directory = file('src/test/resources')
             }
         }
         specsDirectory = file('build/livingdoc/specs')
 
-        systemUnderDevelopment = "info.novatec.aqe.showcase.livingdoc.showcase.sbe.livingdoc.ExtendedSystemUnderDevelopment"
+        systemUnderDevelopment = "info.novatec.testit.showcase.livingdoc.DvdStoreSystemUnderDevelopment"
 
 //reportsType = "xml" // optional
 
@@ -44,7 +44,7 @@ livingdoc {
             dvdstore { // ist frei wählbar, sollte jedoch möglichst aussagekräftig sein
                 respositoryImplementation = "info.novatec.testit.livingdoc.repository.LivingDocRepository"
 
-                repositoryURL = "http://localhost:2020/confluence/rpc/xmlrpc?handler=livingdoc1&sut=CI_VM&includeStyle=true&implemented=true#LD"
+                repositoryURL = "http://localhost:2020/confluence/rpc/xmlrpc?handler=livingdoc1&sut=CI&includeStyle=true&implemented=true#LD"
 
                 repositoryUID = "Confluence-LD"
             }
