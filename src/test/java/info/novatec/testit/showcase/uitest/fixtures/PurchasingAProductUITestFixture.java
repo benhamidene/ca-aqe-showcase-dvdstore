@@ -60,7 +60,7 @@ public class PurchasingAProductUITestFixture extends BaseUITestFixture {
 		return shopPageObject.shoppingCartBox().getShoppingCartItems().size();
 	}
 
-	@Alias(value = "When the user checks out")
+	@Alias("the user checks out")
 	public boolean checkout() {
 		cartPage = shopPageObject.shoppingCartBox().clickCheckoutBtn();
 		return cartPage.isVisible();
@@ -71,11 +71,13 @@ public class PurchasingAProductUITestFixture extends BaseUITestFixture {
 		tearDownDriver();
 	}
 
-	public boolean thatTheShoppingCartOverviewIsDisplayed() {
+	@Alias("the shopping cart overview is displayed")
+	public boolean istheShoppingCartOverviewDisplayed() {
 		return cartPage.isVisible();
 	}
 
-	public int thatTheNumberOfItemsInTheListIs() {
+	@Alias("the number of items in the list is")
+	public int getNumberOfItemsInTheListIs() {
 		return cartPage.getCountItems() - 1;
 	}
 

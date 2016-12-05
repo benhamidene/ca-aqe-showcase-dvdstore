@@ -46,7 +46,7 @@ livingdoc {
 
                 repositoryURL = "http://localhost:2020/confluence/rpc/xmlrpc?handler=livingdoc1&sut=CI&includeStyle=true&implemented=true#LD"
 
-                repositoryUID = "Confluence-LD"
+                repositoryUID = "AQE Showcase Confluence-LD"
             }
         }
         sud = "CI_VM"

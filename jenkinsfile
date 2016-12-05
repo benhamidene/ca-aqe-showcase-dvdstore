@@ -7,10 +7,13 @@ node {
 
     stage('test'){
         sh ''' mvn -X livingdoc:freeze -Dlivingdoc.document.repository.base.url="http://localhost:2020/confluence/rpc/xmlrpc?handler=livingdoc1&amp;sut=CI&amp;includeStyle=true&amp;implemented=true#LD" '''
-        try{
-            sh ''' mvn -X livingdoc:run '''
-        }catch(e){
 
+       timeout(5){
+            try{
+                sh ''' mvn -X livingdoc:run '''
+            }catch(err){
+                echo "Error executing tests: ${err}"
+            }
         }
     }
 
