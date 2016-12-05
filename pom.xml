@@ -16,7 +16,7 @@
 		<livingdoc.spec.dir>${project.build.directory}/livingdoc-spec</livingdoc.spec.dir>
 		<!-- The remote Repository UID. Must correspond to the 'LivingDoc UID' 
 			of Confluence (found in Space Registration of the Space Admin). -->
-		<livingdoc.repository.uid>Confluence-LD</livingdoc.repository.uid>
+		<livingdoc.repository.uid>AQE Showcase Confluence-LD</livingdoc.repository.uid>
 
 		<!-- Document Repository base URL -->
 		<livingdoc.document.repository.base.url><![CDATA[http://localhost:2020/confluence/rpc/xmlrpc?handler=livingdoc1&sut=CI&includeStyle=true&implemented=true#LD]]></livingdoc.document.repository.base.url>
