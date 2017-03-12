@@ -11,7 +11,7 @@ import info.novatec.testit.showcase.uitest.page.HomePage;
 import info.novatec.testit.showcase.uitest.page.LatestOrderPage;
 import info.novatec.testit.showcase.uitest.page.ShopPage;
 
-@FixtureClass("Latest orders (UI-Test)")
+@FixtureClass("Latest orders [ UI-Test ]")
 public class LatestOrdersUITestFixture extends BaseUITestFixture {
 
 	private HomePage homePageObject;
@@ -26,7 +26,7 @@ public class LatestOrdersUITestFixture extends BaseUITestFixture {
 		return true;
 	}
 
-	@Alias(" the user logs in with username and password")
+	@Alias("the user logs in with username and password")
 	public boolean loginWithUsernameAndPassword(String username, String password) {
 		shopPageObject.loginBox().typeUsernameTxt(username);
 		shopPageObject.loginBox().typePasswordTxt(password);

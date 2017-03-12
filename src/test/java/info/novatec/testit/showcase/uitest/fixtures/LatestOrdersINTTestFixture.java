@@ -3,7 +3,7 @@ package info.novatec.testit.showcase.uitest.fixtures;
 import info.novatec.testit.livingdoc.reflect.BeforeFirstExpectation;
 import info.novatec.testit.livingdoc.reflect.annotation.FixtureClass;
 
-@FixtureClass("Latest orders (INT-Test)")
+@FixtureClass("Latest orders [ INT-Test ]")
 public class LatestOrdersINTTestFixture {
 
 	private String username;

@@ -8,13 +8,12 @@ node {
     }
 
     stage('test'){
-        sh ''' mvn -X livingdoc:freeze -Dlivingdoc.document.repository.base.url="http://localhost:2020/confluence/rpc/xmlrpc?handler=livingdoc1&amp;sut=CI&amp;includeStyle=true&amp;implemented=true#LD" '''
+        sh ''' mvn -X livingdoc:freeze -Dlivingdoc.document.repository.base.url="http://localhost:2090/confluence/rpc/xmlrpc?handler=livingdoc1&amp;sut=CI&amp;includeStyle=true&amp;implemented=true#LD" '''
 
         withEnv(['DISPLAY=:1']) {
             timeout(5){
                try {
                    sh 'Xvfb :1 -screen 0 1920x1200x24 &'
-
                    sh ''' mvn -X livingdoc:run '''
 
                }catch(e){
@@ -27,7 +26,7 @@ node {
     }
 
     stage('report'){
-        livingdoc confluenceConfig: [confluenceSiteTitle: 'AQE Showcase Confluence', confluenceSpaceKey: 'LD', confluenceUrl: 'http://localhost:2020/confluence', sut: 'CI'], failureThreshold: 50, testResultsPattern: '**/livingdoc-reports/**'
+        livingdoc confluenceConfig: [confluenceSiteTitle: 'AQE Showcase Confluence', confluenceSpaceKey: 'LD', confluenceUrl: 'http://localhost:2090/confluence', sut: 'CI'], failureThreshold: 50, testResultsPattern: '**/livingdoc-reports/**'
     }
 
     stage('publish'){

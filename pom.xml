@@ -18,8 +18,8 @@
 			of Confluence (found in Space Registration of the Space Admin). -->
 		<livingdoc.repository.uid>AQE Showcase Confluence-LD</livingdoc.repository.uid>
 		<!-- Document Repository base URL -->
-		<livingdoc.document.repository.base.url><![CDATA[http://localhost:2020/confluence/rpc/xmlrpc?handler=livingdoc1&sut=CI&includeStyle=true&implemented=true#LD]]></livingdoc.document.repository.base.url>
-		<livingdoc.core.version>1.2.2</livingdoc.core.version>
+		<livingdoc.document.repository.base.url><![CDATA[http://localhost:2090/confluence/rpc/xmlrpc?handler=livingdoc1&sut=CI&includeStyle=true&implemented=true#LD]]></livingdoc.document.repository.base.url>
+		<livingdoc.core.version>1.3.2</livingdoc.core.version>
 	</properties>
 	<dependencies>
 
@@ -130,7 +130,7 @@
 					<specsDirectory>target/livingdoc-specs</specsDirectory>
 					<reportsDirectory>target/livingdoc-reports</reportsDirectory>
 					<reportsType>xml</reportsType>
-					<systemUnderDevelopment>info.novatec.testit.showcase.livingdoc.DvdStoreSystemUnderDevelopment</systemUnderDevelopment>
+					<systemUnderDevelopment>info.novatec.testit.showcase.livingdoc.DvdStoreSystemUnderDevelopment;ci</systemUnderDevelopment>
 					<resources>
 						<resource>
 							<directory>src/test/resources</directory>

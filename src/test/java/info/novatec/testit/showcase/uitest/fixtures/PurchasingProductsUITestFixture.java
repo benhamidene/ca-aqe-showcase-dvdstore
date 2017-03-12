@@ -4,9 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 
-import info.novatec.testit.livingdoc.LivingDoc;
 import info.novatec.testit.livingdoc.reflect.AfterTable;
-import info.novatec.testit.livingdoc.reflect.BeforeTable;
 import info.novatec.testit.livingdoc.reflect.annotation.Alias;
 import info.novatec.testit.livingdoc.reflect.annotation.FixtureClass;
 import info.novatec.testit.showcase.common.BaseUITestFixture;
@@ -17,35 +15,28 @@ import info.novatec.testit.showcase.uitest.page.ConfirmOrderPage;
 import info.novatec.testit.showcase.uitest.page.HomePage;
 import info.novatec.testit.showcase.uitest.page.ProductDetailPage;
 import info.novatec.testit.showcase.uitest.page.ShopPage;
+import info.novatec.testit.showcase.uitest.page.WelcomePage;
 
-@FixtureClass("Add items to shopping cart (UI-Test)")
-public class AddItemsToCartUITest extends BaseUITestFixture {
+@FixtureClass("Purchasing a product [UI Test]")
+public class PurchasingProductsUITestFixture extends BaseUITestFixture {
 
 	private HomePage homePageObject;
 	private ShopPage shopPageObject;
 	private ProductDetailPage productDetailPageObject;
+	private WelcomePage welcomePageObject;
 	private CartPage cartPage;
 	private ConfirmOrderPage confirmOrderPage;
 
-	
-	@BeforeTable
-	public void openStore(){
-		LivingDoc.setStopOnFirstFailure(true);
-		try {
-			openSystemUnderTest();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public boolean theOnlineDvdStore() throws FileNotFoundException, IOException {
+	@Alias("the online DVD store")
+	public boolean openTheShoppingPage() throws FileNotFoundException, IOException {
+		openSystemUnderTest();
 		homePageObject = browser.create(HomePage.class);
 		shopPageObject = homePageObject.navigation().clickShopLnk();
 		return true;
 	}
-	
-	@Alias("the user opens the detail page of the product no")
-	public boolean openDetailPageOfProductNo(int number) {
+
+	@Alias("the user opens the  detail page of the product no")
+	public boolean openTheDetailPageOfTheProductNo(int number) {
 		List<MovieBox> products = shopPageObject.products();
 		if (number > products.size()) {
 			throw new UITestIllegalStateException(
@@ -53,24 +44,26 @@ public class AddItemsToCartUITest extends BaseUITestFixture {
 		}
 		MovieBox movieBox = products.get(number);
 		productDetailPageObject = movieBox.clickTitleLink();
-		return productDetailPageObject.isVisible();
+		return productDetailPageObject != null;
 	}
 
-	public boolean heAddsTheProductToTheShoppingCart() {
+	@Alias("he adds the product to the shopping cart")
+	public boolean addProductToShoppingCart() {
 		productDetailPageObject = productDetailPageObject.clickAddToCartBtn();
 		return true;
 	}
 
-	public boolean loginWithUsernameAndPassword(String username, String password) {
+	@Alias("login with username")
+	public boolean login(String username) {
 		shopPageObject.loginBox().typeUsernameTxt(username);
-		shopPageObject.loginBox().typePasswordTxt(password);
+		shopPageObject.loginBox().typePasswordTxt("password");
 		shopPageObject = shopPageObject.loginBox().clickLoginBtn(
 				ShopPage.class);
 		return true;
 	}
 
 	@Alias("he goes back to search")
-	public boolean clickBackToSearch() {
+	public boolean backToSearch() {
 		shopPageObject = productDetailPageObject.clickBackToSearchBtn();
 		return true;
 	}
@@ -84,16 +77,22 @@ public class AddItemsToCartUITest extends BaseUITestFixture {
 	@Alias("he purchases the product")
 	public boolean clickPurchase() {
 		confirmOrderPage = cartPage.clickPurchaseBtn();
-		confirmOrderPage = confirmOrderPage.clickConfirmBtn();
-
 		return true;
 	}
 
 	@Alias("the confirmation is displayed")
+	public boolean clickConfirm() {
+		//confirmOrderPage = confirmOrderPage.clickConfirmBtn();
+		return true;
+	}
+
 	public boolean ifPurchaseCompleteIsShown() {
 		return confirmOrderPage.ifPurchaseCompleteIsShown();
 	}
 
+	public boolean ifUserIsLoggedIn() {
+		return welcomePageObject.loginBox().logoutBtn().isVisible();
+	}
 	
 	@AfterTable
 	public void closeBrowser() {

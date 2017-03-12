@@ -55,21 +55,20 @@ livingdoc {
 
 dependencies {
 
-    livingdocUiTestCompile "info.novatec.testit:webtester-support-junit:1.1.1"
-    livingdocUiTestCompile "info.novatec.testit:webtester-support-firefox:1.1.1"
-    livingdocUiTestCompile "org.seleniumhq.selenium:selenium-firefox-driver:2.48.2"
+    livingdocUiTestCompile "info.novatec.testit:webtester-core:2.1.0"
+    livingdocUiTestCompile "org.seleniumhq.selenium:selenium-firefox-driver:2.53.1"
+    livingdocUiTestCompile "org.seleniumhq.selenium:selenium-support:2.53.1"
+
     livingdocUiTestCompile "org.apache.httpcomponents:httpclient:4.3.5"
     livingdocUiTestCompile "xmlrpc:xmlrpc:2.0.1"
     livingdocUiTestCompile "org.apache.commons:commons-lang3:3.4"
     livingdocUiTestCompile "commons-collections:commons-collections:3.2.1"
     livingdocUiTestCompile "org.apache.logging.log4j:log4j-slf4j-impl:2.5"
 
-    livingdocUiTestCompile('info.novatec.testit:livingdoc-cli:1.1.2') { exclude group: 'javax.transaction', module: 'jta' }
-    livingdocUiTestCompile('info.novatec.testit:livingdoc-core:1.1.2') { exclude group: 'javax.transaction', module: 'jta' }
-    livingdocUiTestCompile('info.novatec.testit:livingdoc-server:1.1.2') { exclude group: 'javax.transaction', module: 'jta' }
+    livingdocUiTestCompile('info.novatec.testit:livingdoc-cli:1.3.2')
+    livingdocUiTestCompile('info.novatec.testit:livingdoc-core:1.3.2')
+    livingdocUiTestCompile('info.novatec.testit:livingdoc-server:1.3.2')
 
-    livingdocUiTestCompile "commons-codec:commons-codec:1.9"
-    livingdocUiTestCompile "commons-io:commons-io:2.4"
     livingdocUiTestCompile "org.hamcrest:hamcrest-all:1.3"
     livingdocUiTestCompile group: 'junit', name: 'junit', version: '4.12'
 

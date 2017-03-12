@@ -29,7 +29,6 @@ public abstract class BaseUITestFixture {
 	 * @throws FileNotFoundException
 	 */
 	protected void openSystemUnderTest() throws FileNotFoundException, IOException {
-		Configuration.loadSystemProperties("default");
 		if(browser == null){
 			browser = createBrowser();
 		}
@@ -45,8 +44,10 @@ public abstract class BaseUITestFixture {
 	}
 	
 	private Browser createBrowser(){
-		FirefoxDriver driver = new FirefoxDriver();
-		return new FirefoxFactory().createBrowser(driver);
+		FirefoxProfile ffProfile = new FirefoxProfile();
+		ffProfile.setPreference("browser.private.browsing.autostart",true);
+		FirefoxDriver firefoxDriver = new FirefoxDriver(ffProfile);
+		return new FirefoxFactory().createBrowser(firefoxDriver);
 		
 	}
 }
